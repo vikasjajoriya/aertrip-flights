@@ -13,7 +13,7 @@
 
 .header-container {
     margin: auto;
-    padding: 16px;
+    padding: 8px 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,13 +28,13 @@
 }
 
 .logo img {
-    height: 30px;
+    height: 20px;
 }
 
 /* Desktop Nav */
 .nav-desktop {
     display: flex;
-    gap: 24px;
+    gap: 10px;
 }
 
 .nav-desktop a {
@@ -209,16 +209,14 @@ color: #353844;
 
 .login_signup_btn {
   background-color: transparent ;
-  border: 2px solid #00ba9f;
-  border-radius: 30px;
-  box-shadow: #00ba9f 3px 3px 0 0;
+  border: 1px solid #00ba9f;
+  border-radius: 12px;
   color: #00ba9f;
   cursor: pointer;
-  display: inline-block;
   font-weight: 600;
-  font-size: 15px;
-  padding: 0 18px;
-  line-height: 40px;
+  font-size: 12px;
+  padding: 0 12px;
+  line-height: 30px;
   text-align: center;
   text-decoration: none;
   user-select: none;

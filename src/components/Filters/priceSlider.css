@@ -1,5 +1,5 @@
 .price-card {
-    padding: 16px;
+padding: 16px;
     /* background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%); */
     border-radius: 8px;
     /* box-shadow: 0 6px 18px rgba(20, 45, 80, 0.06); */
@@ -9,17 +9,18 @@
 }
 
 .price-title {
-    margin: 0 0 8px 0;
+margin: 0 0 25px 0;
     font-size: 16px;
     color: #073b4c;
+    font-weight: 600;
 }
 
 .price-values {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    color: #58707a;
-    margin-bottom: 8px
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 8px;
 }
 
 .range-container {
@@ -85,7 +86,7 @@
 }
 
 .price-actions {
-    margin-top: 12px;
+    margin-top: 24px;
     display: flex
 }
 
@@ -99,5 +100,6 @@
 .btn-clear {
     background: #f4f8fb;
     color: #073b4c;
-    border: 1px solid rgba(7, 59, 76, 0.06)
+    /* border: 1px solid rgba(7, 59, 76, 0.06); */
+    border: 1px solid #14b8a6;
 }

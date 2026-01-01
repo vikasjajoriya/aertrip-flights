@@ -18,7 +18,10 @@ const FlightCard = ({ flight }) => {
 
   const airlineCode = Array.isArray(airline) ? airline[0] : airline;
 
-  const meta = useSelector((state) => state.flights.meta || {});
+  const meta = useSelector((state) => state?.flights.meta || {});
+
+  console.log("meta",meta);
+  
   const alMaster = meta.alMaster || {};
   const aldet = meta.aldet || {};
   const airlineFull = (alMaster && alMaster[airlineCode] && alMaster[airlineCode].name) || aldet[airlineCode] || airlineCode;
@@ -42,7 +45,7 @@ const FlightCard = ({ flight }) => {
               e.currentTarget.src = placeholderSvg;
             }}
           />
-          <div style={{ fontWeight: 700 }}>{airlineFull}</div>
+          <div style={{ fontWeight: 600 }}>{airlineFull}</div>
         </div>
 
         <div className="time-block" style={{ minWidth: 140 }}>
@@ -60,9 +63,9 @@ const FlightCard = ({ flight }) => {
           <span className="airport-code" title={leg ? `${leg.to} ${leg.atm || ''}` : arrival} style={{ color: "#6b7a80" }}>{arrival}{leg && leg.atm ? ` ${leg.atm}` : ''}</span>
         </div>
 
-        <div className="price" style={{ textAlign: "right", width: 140 }}>
+        <div className="price" style={{ display: "flex",justifyContent:"space-between",alignItems:"end", width: 180 }}>
           <h3 style={{ margin: 0 }}>₹ {price}</h3>
-          <button style={{ marginTop: 8, padding: "8px 12px", borderRadius: 8, border: "none", background: "#14b8a6", color: "#fff" }}>Book</button>
+          <button style={{ marginTop: 8, padding: "8px 12px", borderRadius: 8, border: "none", background: "#14b8a6", color: "#fff" }}>Book Now</button>
         </div>
       </div>
     </div>

@@ -10,14 +10,14 @@ import { setFlights, setMeta } from "../../features/flights/flightsSlice";
 export default function FlightsList() {
   const dispatch = useDispatch();
   const { data, isLoading, isError,error } = useGetFlightsQuery();
-// console.log("data",data?.flights?.[0]);
+console.log("data",data);
 // console.log("error",error);
 
   useEffect(() => {
     if (!data) return;
 
-    const maybeRoot = data.data || data;
-    const flights = (maybeRoot?.flights?.[0]?.results?.j) || [];
+    const maybeRoot = data?.flights?.[0]?.results;
+    const flights = (maybeRoot?.j) || [];
     dispatch(setFlights(flights));
 
     const meta = {};
@@ -38,8 +38,8 @@ export default function FlightsList() {
       </aside>
 
       <main style={{ flex: 1 }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14,padding:"0px 1.5rem",backgroundColor:"#00ba9f24",borderRadius:"12px",boxShadow:"rgba(11, 30, 40, 0.06) 0px 0px 40px 10px" }}>
-          <div style={{ fontSize: 18, fontWeight: 700 }}>{filteredFlights.length} Flights</div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14,padding:"0px 1.5rem",backgroundColor:"#02020208",borderRadius:"12px"}}>
+          <div style={{ fontSize: 18, fontWeight: 600 }}>{filteredFlights.length} Flights</div>
           <SortFilters />
         </div>
 

@@ -33,7 +33,7 @@ export default function PriceSlider() {
 
     return (
         <div className="price-card">
-            <h4 className="price-title">Price</h4>
+            <h4 className="price-title">Price Range</h4>
 
             <div className="price-values">
                 <span>₹{dataMin}</span>
@@ -70,9 +70,9 @@ export default function PriceSlider() {
                 </div>
             </div>
 
-            <div className="price-selected">Selected: ₹{minSelected} - ₹{maxSelected}</div>
+            <div className="price-selected">Selected Range: ₹{minSelected} - ₹{maxSelected}</div>
 
-            <div className="price-actions" style={{ flexDirection: "column" }}>
+            <div className="price-actions">
                 <button className="btn btn-clear" onClick={() => dispatch(clearFilters())}>Clear Filters</button>
             </div>
         </div>

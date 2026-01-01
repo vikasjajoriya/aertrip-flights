@@ -25,7 +25,7 @@ const Header = () => {
               onClick={() => setSidebarOpen(true)}
               disabled={sidebarOpen}
             >
-              <RxHamburgerMenu size={30} color="#24b498" />
+              <RxHamburgerMenu size={20} color="#24b498" />
             </button>
             <Link to="#">
               <button className="login_signup_btn">

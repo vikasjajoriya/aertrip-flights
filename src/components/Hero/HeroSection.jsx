@@ -10,11 +10,11 @@ const HeroSection = () => {
             <section className="hero">
                 {/* Overlay */}
                 <div className="hero-overlay" />
-                <div className="hero-container">
+                {/* <div className="hero-container">
                     <div className="hero-text">
                         <h1>Let’s Begin the Journey</h1>
                     </div>
-                </div>
+                </div> */}
                 <div className="hero-searchbar">
                     <div className="flight-search">
 

@@ -17,34 +17,29 @@
     margin-top: 75px;
 } */
  .hero {
-    position: relative;
+position: relative;
     width: 100%;
-    height: 40vh;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.45),
-            rgba(0, 0, 0, 0.45)
-        ),
-        url("/src/assets/Hero_img3.png");
-
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(/src/assets/Hero_img3.png); */
     background-size: cover, 50%;
     background-position: center;
     background-repeat: no-repeat;
-    margin-top: 75px;
+    margin-top: 80px;
 }
 
 
 
 /* Overlay */
 .hero-overlay {
-      position: absolute;
+    position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgb(167 233 221 / 44%);
     z-index: 1;
+    top: -31px;
+    height: 175%;
 }
 
 
@@ -162,26 +157,19 @@
 .hero-searchbar {
     position: absolute;
     left: 50%;
-    bottom: -45px; /* overlaps hero */
+    bottom: -30px;
     transform: translateX(-50%);
     z-index: 10;
-
     width: 100%;
     max-width: 1100px;
-    height: 95px;
-
+    height: 80px;
     background: #fff;
-    /* Glassmorphism */
-    /* background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px); */
     border-radius: 18px;
-
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.18);
-
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 8%);
     display: flex;
     align-items: center;
     padding: 0 28px;
+    border: 1px solid #14b8a6;
 }
 /* Bounce Animation */
 @keyframes bounce {
@@ -260,8 +248,8 @@
 }
 
 .field h4 {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 600;
     margin: 4px 0;
     color: #111827;
 }

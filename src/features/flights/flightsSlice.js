@@ -23,6 +23,8 @@ const flightsSlice = createSlice({
       state.priceRange = [minPrice, maxPrice];
     },
     setMeta(state, action) {
+      console.log("stateds",action);
+      
       state.meta = {
         ...(state.meta || {}),
         ...(action.payload || {}),

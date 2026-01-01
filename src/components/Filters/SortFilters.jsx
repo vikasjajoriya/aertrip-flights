@@ -39,7 +39,7 @@ export default function SortFilters() {
       <button style={btnStyle} onClick={() => dispatch(setSortBy(toggle("ARRIVE_ASC", "ARRIVE_DESC")))}>
         Arrive {sortBy === "ARRIVE_ASC" ? <FaArrowDownWideShort color="#14b8a6" size={15}/> : sortBy === "ARRIVE_DESC" ? <FaArrowUpWideShort color="#14b8a6" size={15}/> : ""}
       </button>
-      <button style={{ ...btnStyle, background: "#f4f8fb" }} onClick={() => dispatch(clearFilters())}>Clear Filters</button>
+      <button style={{ ...btnStyle, background: "#f4f8fb",border:"1px solid #14b8a6" }} onClick={() => dispatch(clearFilters())}>Clear Filters</button>
     </div>
   );
 }
