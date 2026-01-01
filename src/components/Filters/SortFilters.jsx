@@ -12,7 +12,7 @@ export default function SortFilters() {
   };
 
   const btnStyle = {
-    padding: "8px 12px",
+    padding: "8px 10px",
     borderRadius: 8,
     border: "1px solid rgba(7,59,76,0.08)",
     background: "#fff",
@@ -20,10 +20,11 @@ export default function SortFilters() {
     display: "flex",
     alignItems: "center",
     gap: ".5rem",
+    fontSize: "14px",
   };
 
   return (
-    <div style={{ display: "flex", gap: 12, alignItems: "center", margin: "12px 0" }}>
+    <div className="flex items-center gap-3 !my-3">
       <button style={btnStyle} onClick={() => dispatch(setSortBy(toggle("PRICE_LOW", "PRICE_HIGH")))}>
         Price {sortBy === "PRICE_LOW" ? <FaArrowDownWideShort color="#14b8a6" size={15}/> : sortBy === "PRICE_HIGH" ? <FaArrowUpWideShort color="#14b8a6" size={15}/> : ""}
       </button>
@@ -39,7 +40,7 @@ export default function SortFilters() {
       <button style={btnStyle} onClick={() => dispatch(setSortBy(toggle("ARRIVE_ASC", "ARRIVE_DESC")))}>
         Arrive {sortBy === "ARRIVE_ASC" ? <FaArrowDownWideShort color="#14b8a6" size={15}/> : sortBy === "ARRIVE_DESC" ? <FaArrowUpWideShort color="#14b8a6" size={15}/> : ""}
       </button>
-      <button style={{ ...btnStyle, background: "#f4f8fb",border:"1px solid #14b8a6" }} onClick={() => dispatch(clearFilters())}>Clear Filters</button>
+      <button style={{ ...btnStyle, background: "#f4f8fb",border:"1px solid #14b8a6",color:"#073b4c" }} onClick={() => dispatch(clearFilters())}>Clear Filters</button>
     </div>
   );
 }

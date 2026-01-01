@@ -5,34 +5,38 @@ export const selectFlightsState = state => state.flights;
 export const selectFilteredFlights = createSelector(
   [selectFlightsState],
   ({ flights, sortBy, priceRange }) => {
-    let result = flights.filter(
-      f => f.farepr >= priceRange[0] && f.farepr <= priceRange[1]
-    );
+    const min = Number(priceRange?.[0] ?? 0) || 0;
+    const max = Number(priceRange?.[1] ?? Infinity) || Infinity;
+
+    let result = flights.filter((f) => {
+      const p = Number(f.priceNum ?? f.farepr ?? 0) || 0;
+      return p >= min && p <= max;
+    });
 
     switch (sortBy) {
       case "PRICE_LOW":
-        result.sort((a, b) => a.farepr - b.farepr);
+        result.sort((a, b) => (Number(a.priceNum || 0) - Number(b.priceNum || 0)));
         break;
       case "PRICE_HIGH":
-        result.sort((a, b) => b.farepr - a.farepr);
+        result.sort((a, b) => (Number(b.priceNum || 0) - Number(a.priceNum || 0)));
         break;
       case "DURATION_ASC":
-        result.sort((a, b) => (a.tt && a.tt[0] ? a.tt[0] : 0) - (b.tt && b.tt[0] ? b.tt[0] : 0));
+        result.sort((a, b) => (Number(a.durationSec || 0) - Number(b.durationSec || 0)));
         break;
       case "DURATION_DESC":
-        result.sort((a, b) => (b.tt && b.tt[0] ? b.tt[0] : 0) - (a.tt && a.tt[0] ? a.tt[0] : 0));
+        result.sort((a, b) => (Number(b.durationSec || 0) - Number(a.durationSec || 0)));
         break;
       case "DEPART_ASC":
-        result.sort((a, b) => a.dt.localeCompare(b.dt));
+        result.sort((a, b) => (String(a.depart || "").localeCompare(String(b.depart || ""))));
         break;
       case "DEPART_DESC":
-        result.sort((a, b) => b.dt.localeCompare(a.dt));
+        result.sort((a, b) => (String(b.depart || "").localeCompare(String(a.depart || ""))));
         break;
       case "ARRIVE_ASC":
-        result.sort((a, b) => a.at.localeCompare(b.at));
+        result.sort((a, b) => (String(a.arrive || "").localeCompare(String(b.arrive || ""))));
         break;
       case "ARRIVE_DESC":
-        result.sort((a, b) => b.at.localeCompare(a.at));
+        result.sort((a, b) => (String(b.arrive || "").localeCompare(String(a.arrive || ""))));
         break;
       default:
         break;

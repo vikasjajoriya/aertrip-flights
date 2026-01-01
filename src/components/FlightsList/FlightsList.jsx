@@ -5,13 +5,13 @@ import FlightCard from "../FlightCard/FlightCard";
 import PriceSlider from "../Filters/PriceSlider";
 import SortFilters from "../Filters/SortFilters";
 import { useGetFlightsQuery } from "../../features/flights/flightsApi";
-import { setFlights, setMeta } from "../../features/flights/flightsSlice";
+import { clearFilters, setFlights, setMeta } from "../../features/flights/flightsSlice";
 
 export default function FlightsList() {
   const dispatch = useDispatch();
-  const { data, isLoading, isError,error } = useGetFlightsQuery();
-console.log("data",data);
-// console.log("error",error);
+  const { data, isLoading, isError, error, refetch } = useGetFlightsQuery();
+  // console.log("data",data);
+  // console.log("error",error);
 
   useEffect(() => {
     if (!data) return;
@@ -28,24 +28,41 @@ console.log("data",data);
 
   const filteredFlights = useSelector(selectFilteredFlights);
 
-   if (isLoading) return <div style={{ margin: "120px 60px 0px 60px",display:"flex",justifyContent:"center" }}><div className="loader"/></div>;
-  if (isError) return <div style={{ margin: "120px 60px 0px 60px",textAlign:"center" }}><p style={{color:"red",fontSize:"28px"}}>{error?.data || "Error loading flights"}</p></div>;
+  if (isLoading) return <div className="absolute top-[170px] w-full flex items-center justify-center h-[50vh]"><div className="loader" /></div>;
+  if (isError) return (
+    <div className="absolute top-[170px] w-full flex items-center justify-center h-[50vh] flex-col gap-4">
+      <p className="text-red-500 text-[20px]">{error?.data || "Error loading flights"}</p>
+      <div className="flex gap-2">
+        <button className="!px-3 !py-2 rounded bg-teal-500 text-white cursor-pointer" onClick={() => refetch()}>Retry</button>
+      </div>
+    </div>
+  );
 
   return (
-    <div style={{ margin: "80px 60px 0px 60px", display: "flex", gap: 20 }}>
-      <aside style={{ width: 400 }}>
+    <div className="absolute top-[170px] w-full !px-[60px] flex flex-col gap-8 lg:flex-row"
+    >
+      <aside className="w-full lg:w-[400px]">
         <PriceSlider />
       </aside>
 
-      <main style={{ flex: 1 }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14,padding:"0px 1.5rem",backgroundColor:"#02020208",borderRadius:"12px"}}>
-          <div style={{ fontSize: 18, fontWeight: 600 }}>{filteredFlights.length} Flights</div>
+      <main className="flex-1">
+        <div className="flex items-center justify-between !mb-[14px] !px-6 !py-0 rounded-[12px] bg-[#02020208]">
+          <div className="text-[18px] font-semibold">{filteredFlights?.length || 0} Flights</div>
           <SortFilters />
         </div>
 
-        {filteredFlights.map((f) => (
-          <FlightCard key={f.id} flight={f} />
-        ))}
+        {filteredFlights?.length === 0 ? (
+          <div className="p-8 text-center">
+            <p className="text-lg mb-4">No flights match your filters.</p>
+            <div className="flex items-center justify-center gap-2">
+              <button className="!px-3 !py-2 rounded bg-teal-500 text-white cursor-pointer" onClick={() => dispatch(clearFilters())}>Clear Filters</button>
+            </div>
+          </div>
+        ) : (
+          filteredFlights?.map((f) => (
+            <FlightCard key={f?.id} flight={f} />
+          ))
+        )}
       </main>
     </div>
   );

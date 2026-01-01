@@ -1,15 +1,13 @@
 import Header from "./components/Header/Header";
-import SortFilters from "./components/Filters/SortFilters";
-import FlightsList from "./components/FlightsList/FlightsList";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HeroSection from "./components/Hero/HeroSection";
+import FlightsList from "./components/FlightsList/FlightsList";
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<HeroSection />} />
+        <Route path="/" element={<FlightsList />} />
       </Routes>
     </Router>
   );
