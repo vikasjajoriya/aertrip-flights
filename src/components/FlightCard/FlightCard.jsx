@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 const FlightCard = ({ flight }) => {
   const leg = (flight.leg && flight.leg[0] && flight.leg[0].flights && flight.leg[0].flights[0]) || null;
   const departure = leg ? leg.fr : flight.fr || flight.from;
-  const departureTime = leg ? leg.dt : flight.dt || flight.departureTime;
+  const departureTime = flight.depart || (leg ? leg.dt : flight.dt) || flight.departureTime;
   const arrival = leg ? leg.to : flight.to || flight.at;
-  const arrivalTime = leg ? leg.at : flight.at || flight.arrivalTime;
+  const arrivalTime = flight.arrive || (leg ? leg.at : flight.at) || flight.arrivalTime;
   const airline = (leg && leg.al) || (flight.al && (Array.isArray(flight.al) ? flight.al[0] : flight.al)) || flight.airline || "-";
   const durationSec = leg ? leg.ft : flight.ft || flight.duration || (flight.tt && flight.tt[0]);
   const durationText = durationSec ? `${Math.floor(durationSec / 3600)}h ${Math.floor((durationSec % 3600) / 60)}m` : "-";

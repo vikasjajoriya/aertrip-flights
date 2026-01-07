@@ -13,30 +13,75 @@ export const selectFilteredFlights = createSelector(
       return p >= min && p <= max;
     });
 
+    const num = (v) => Number(v || 0) || 0;
+    const cmpNumAsc = (a, b) => num(a) - num(b);
+    const cmpNumDesc = (a, b) => num(b) - num(a);
+    const cmpStr = (a, b) => String(a || "").localeCompare(String(b || ""));
+
     switch (sortBy) {
       case "PRICE_LOW":
-        result.sort((a, b) => (Number(a.priceNum || 0) - Number(b.priceNum || 0)));
+        result.sort((a, b) => {
+          const r = cmpNumAsc(a.priceNum, b.priceNum);
+          if (r !== 0) return r;
+          const d = cmpNumAsc(a.durationSec, b.durationSec);
+          if (d !== 0) return d;
+          return cmpNumAsc(a.departSec, b.departSec);
+        });
         break;
       case "PRICE_HIGH":
-        result.sort((a, b) => (Number(b.priceNum || 0) - Number(a.priceNum || 0)));
+        result.sort((a, b) => {
+          const r = cmpNumDesc(a.priceNum, b.priceNum);
+          if (r !== 0) return r;
+          const d = cmpNumAsc(a.durationSec, b.durationSec);
+          if (d !== 0) return d;
+          return cmpNumAsc(a.departSec, b.departSec);
+        });
         break;
       case "DURATION_ASC":
-        result.sort((a, b) => (Number(a.durationSec || 0) - Number(b.durationSec || 0)));
+        result.sort((a, b) => {
+          const r = cmpNumAsc(a.durationSec, b.durationSec);
+          if (r !== 0) return r;
+          const p = cmpNumAsc(a.priceNum, b.priceNum);
+          if (p !== 0) return p;
+          return cmpNumAsc(a.departSec, b.departSec);
+        });
         break;
       case "DURATION_DESC":
-        result.sort((a, b) => (Number(b.durationSec || 0) - Number(a.durationSec || 0)));
+        result.sort((a, b) => {
+          const r = cmpNumDesc(a.durationSec, b.durationSec);
+          if (r !== 0) return r;
+          const p = cmpNumAsc(a.priceNum, b.priceNum);
+          if (p !== 0) return p;
+          return cmpNumAsc(a.departSec, b.departSec);
+        });
         break;
       case "DEPART_ASC":
-        result.sort((a, b) => (String(a.depart || "").localeCompare(String(b.depart || ""))));
+        result.sort((a, b) => {
+          const r = cmpNumAsc(a.departSec, b.departSec);
+          if (r !== 0) return r;
+          return cmpNumAsc(a.durationSec, b.durationSec);
+        });
         break;
       case "DEPART_DESC":
-        result.sort((a, b) => (String(b.depart || "").localeCompare(String(a.depart || ""))));
+        result.sort((a, b) => {
+          const r = cmpNumDesc(a.departSec, b.departSec);
+          if (r !== 0) return r;
+          return cmpNumAsc(a.durationSec, b.durationSec);
+        });
         break;
       case "ARRIVE_ASC":
-        result.sort((a, b) => (String(a.arrive || "").localeCompare(String(b.arrive || ""))));
+        result.sort((a, b) => {
+          const r = cmpNumAsc(a.arriveSec, b.arriveSec);
+          if (r !== 0) return r;
+          return cmpNumAsc(a.durationSec, b.durationSec);
+        });
         break;
       case "ARRIVE_DESC":
-        result.sort((a, b) => (String(b.arrive || "").localeCompare(String(a.arrive || ""))));
+        result.sort((a, b) => {
+          const r = cmpNumDesc(a.arriveSec, b.arriveSec);
+          if (r !== 0) return r;
+          return cmpNumAsc(a.durationSec, b.durationSec);
+        });
         break;
       default:
         break;
